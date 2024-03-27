@@ -1,0 +1,10 @@
+com\example\demo\DemoApplication.class
+com\example\demo\models\document3.class
+com\example\demo\controllers\UsersController.class
+com\example\demo\models\Document2Repository.class
+com\example\demo\models\DocumentRepository.class
+com\example\demo\models\Document3Repository.class
+com\example\demo\models\document2.class
+com\example\demo\controllers\genFile.class
+com\example\demo\controllers\genFile$1.class
+com\example\demo\models\document.class
