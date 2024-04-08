@@ -47,9 +47,9 @@
     <nav class="navbar navbar-expand-lg fixed-top shadow p-3 mb-5">
         <div class="container-fluid">
             <!--Logo-->
-            <a class="navbar-brand me-auto logo" href="#">
-            <img src="/img/logo-small.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            DonateDesk
+            <a class="navbar-brand me-auto logo" th:href="@{/home.html}">
+                <img src="/img/logo-small.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                DonateDesk
             </a>
             <!--Navbar Content-->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -84,20 +84,20 @@
     <main class="main-content">
         <div class="form-container justify-content-center align-items-center">
             <h1 class="mb-4">Successfully uploaded excel files!</h1>
-            <button class="nwrc-btn-txt align-bottom" href="/home.html">Go back to Excel Process</button>
+            <button class="nwrc-btn-txt align-bottom" onclick="window.location.href='/home.html';">Go back to Excel Process</button>
             
             <h1 class="mt-5">View Files</h1>
             <h6 style="padding-bottom: 20px;" class="line">View your uploaded files here</h6>
             <!--Change later-->
             <ul class="ms-3">
                 <li>
-                    <button class="nwrc-btn-txt" href="view">Raw files</button>
+                    <a class="nwrc-btn-txt btn btn-custom" href="view">Raw files</a>
                 </li>
                 <li>
-                    <button class="nwrc-btn-txt" href="view2">Users files</button>
+                    <a class="nwrc-btn-txt btn btn-custom" href="view2">Users files</a>
                 </li>
                 <li>
-                    <button class="nwrc-btn-txt" href="view3">Processed files</button>
+                    <a class="nwrc-btn-txt btn btn-custom" href="view3">Processed files</a>
                 </li>
             </ul>
         </div>

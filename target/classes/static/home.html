@@ -76,9 +76,9 @@
     <nav class="navbar navbar-expand-lg fixed-top shadow p-3 mb-5">
         <div class="container-fluid">
             <!--Logo-->
-            <a class="navbar-brand me-auto logo" href="#">
-            <img src="img/logo-small.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            DonateDesk
+            <a class="navbar-brand me-auto logo" th:href="@{/home.html}">
+                <img src="/img/logo-small.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                DonateDesk
             </a>
             <!--Navbar Content-->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -135,15 +135,16 @@
             <!--Change later-->
             <ul class="ms-3">
                 <li>
-                    <button class="nwrc-btn-txt" href="view">Raw files</button>
+                    <a class="nwrc-btn-txt btn btn-custom" href="view">Raw files</a>
                 </li>
                 <li>
-                    <button class="nwrc-btn-txt" href="view2">Users files</button>
+                    <a class="nwrc-btn-txt btn btn-custom" href="view2">Users files</a>
                 </li>
                 <li>
-                    <button class="nwrc-btn-txt" href="view3">Processed files</button>
+                    <a class="nwrc-btn-txt btn btn-custom" href="view3">Processed files</a>
                 </li>
             </ul>
+            
         </div>
     </main>
 

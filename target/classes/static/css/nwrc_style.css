@@ -188,6 +188,29 @@ ul{
     }
 }
 
+.btn-custom {
+    background-color: white;
+}
+
+.file-icon {
+    width: 18px;
+    height: auto;
+    margin-right: 5px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.file-entry {
+    margin-bottom: 15px;
+}
+
+.btn-delete {
+    margin-left: 10px;
+}
+
+
 /* ------------------------------------- */
 /* .nav-link::after{
     opacity: 0;

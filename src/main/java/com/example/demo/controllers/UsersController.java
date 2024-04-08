@@ -3,9 +3,7 @@ package com.example.demo.controllers;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Date;
-import java.util.HexFormat;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.util.StringUtils;
 
-import com.example.demo.controllers.genFile;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import com.example.demo.models.document;
 import com.example.demo.models.document2;
 import com.example.demo.models.document3;
@@ -30,7 +27,6 @@ import com.example.demo.models.Document3Repository;
 
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Controller
@@ -91,12 +87,7 @@ public class UsersController {
     
         ByteArrayOutputStream content3 = generator.generateFile(multipartFile.getBytes(), multipartFile2.getBytes());
     
-        char temp = fileName.charAt(26);
-        String fileName3 = "output" + fileName.substring(20, 26);
-        if (temp != '-') {
-            fileName3 += temp;
-        }
-        fileName3 += ".xlsx";
+        String fileName3 = "generated_" + doc.getName();
     
         document3 doc3 = new document3();
         doc3.setName(fileName3);
@@ -158,6 +149,42 @@ public class UsersController {
         ServletOutputStream outputStream = response.getOutputStream();
         outputStream.write(doc.getContent());
         outputStream.close();
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteDocument(@PathVariable("id") long id, RedirectAttributes redirectAttributes) {
+        try {
+            repo.deleteById(id);
+            redirectAttributes.addFlashAttribute("message", "The file has been deleted successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("errorMessage", "Error occurred during deletion.");
+        }
+        return "redirect:/view";
+    }
+
+    @GetMapping("/delete3/{id}")
+    public String deleteDocument3(@PathVariable("id") long id, RedirectAttributes redirectAttributes) {
+        try {
+            repo3.deleteById(id);
+            redirectAttributes.addFlashAttribute("message", "The file has been deleted successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("errorMessage", "Error occurred during deletion.");
+        }
+        return "redirect:/view3";
+    }
+
+    @GetMapping("/delete2/{id}")
+    public String deleteDocument2(@PathVariable("id") long id, RedirectAttributes redirectAttributes) {
+        try {
+            repo2.deleteById(id);
+            redirectAttributes.addFlashAttribute("message", "The file has been deleted successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("errorMessage", "Error occurred during deletion.");
+        }
+        return "redirect:/view2";
     }
     
     

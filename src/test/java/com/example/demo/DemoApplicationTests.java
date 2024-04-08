@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Date;
 
-import javax.swing.text.Document;
-
 import com.example.demo.models.DocumentRepository;
 import com.example.demo.models.document;
 
@@ -19,7 +17,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 @DataJpaTest
