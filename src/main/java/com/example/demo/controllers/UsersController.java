@@ -6,8 +6,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.poi.openxml4j.util.ZipSecureFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +41,7 @@ public class UsersController {
     private Document2Repository repo2;
     @Autowired
     private Document3Repository repo3;
+    private DocumentService documentService = new DocumentService(repo, repo2, repo3);
 
     @GetMapping("view")
     public String getAllFiles(Model model) {
@@ -62,6 +66,37 @@ public class UsersController {
     @GetMapping("chooseView")
     public String goToChoose(Model model) {
         return "choose";
+    }
+    @GetMapping("/preview/{id}")
+    public ResponseEntity<String> previewFile(@PathVariable Long id) {
+        try {
+            String htmlTable = documentService.excelToHtmlTable(repo, id);
+            return ResponseEntity.ok().body(htmlTable);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error reading file");
+        }
+    }
+    @GetMapping("/2preview/{id}")
+    public ResponseEntity<String> previewFile2(@PathVariable Long id) {
+        try {
+            String htmlTable = documentService.excelToHtmlTable2(repo2, id);
+            return ResponseEntity.ok().body(htmlTable);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error reading file");
+        }
+    }
+    @GetMapping("/3preview/{id}")
+    public ResponseEntity<String> previewFile3(@PathVariable Long id) {
+        ZipSecureFile.setMinInflateRatio(0.001);
+        try {
+            String htmlTable = documentService.excelToHtmlTable3(repo3, id);
+            return ResponseEntity.ok().body(htmlTable);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error reading file");
+        }
     }
 
     @PostMapping("/upload")
@@ -95,9 +130,8 @@ public class UsersController {
         doc3.setSize(content3.toByteArray().length);
         doc3.setUploadTime(new Date());
     
-        repo.save(doc);
-        repo2.save(doc2);
-        repo3.save(doc3);
+        
+        
     
         ra.addFlashAttribute("message", "The file has been uploaded successfully.");
     

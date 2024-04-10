@@ -99,6 +99,7 @@
                     <a th:href="@{'download2?id=' + ${doc2.id}}">
                         <span th:text="${doc2.name}"></span>
                     </a>
+                    <a th:href="@{'2preview/' + ${doc2.id}}"class="btn btn-danger btn-sm btn-delete">preview</a>
                     <a th:href="@{'/delete2/' + ${doc2.id}}" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Are you sure you want to delete this file?');">Delete</a>
                 </div>
             </th:block>          
