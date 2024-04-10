@@ -130,8 +130,9 @@ public class UsersController {
         doc3.setSize(content3.toByteArray().length);
         doc3.setUploadTime(new Date());
     
-        
-        
+            repo.save(doc);
+            repo2.save(doc2);
+            repo3.save(doc3);
     
         ra.addFlashAttribute("message", "The file has been uploaded successfully.");
     
